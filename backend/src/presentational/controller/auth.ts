@@ -4,8 +4,9 @@ import { badRequest, server, success } from "../../utils/helpers/httpResponse";
 
 export class AuthController {
   constructor(private readonly autUseCase: authUseCase) {}
-  async handle({ username, password }: { username: string; password: string }) {
+  async handle(data: { username: string; password: string }) {
     try {
+      const {username, password} = data
       if (!username) return badRequest(new InvalidParamError("username"));
       if (!password) return badRequest(new InvalidParamError("password"));
       const accessToken = await this.autUseCase.auth(username, password);
