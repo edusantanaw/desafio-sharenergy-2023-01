@@ -12,17 +12,13 @@ export async function authService(data: data) {
   try {
     const response = (await Api.post(baseUrl + "auth", data)) as response;
     const { accessToken } = response.data;
+
     if (data.remember) makeStorage(accessToken, tokenKey);
-    console.log(1);
-    return {
-      success: true,
-      data: accessToken,
-    };
+
+    return { success: true, data: accessToken };
   } catch (error) {
     const authError = error as { response: { data: string } };
-    return {
-      success: false,
-      data: authError.response.data,
-    };
+
+    return { success: false, data: authError.response.data };
   }
 }
