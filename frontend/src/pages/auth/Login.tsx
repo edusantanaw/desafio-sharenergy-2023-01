@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
+import { useAuth } from "../../context/auth/authContext";
 import { Form, Input, Label, LoginContainer } from "./login.styles";
 
 const Login = () => {
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const rememberUser = useRef<HTMLInputElement | null>(null);
-
+  const { auth } = useAuth();
   function getData() {
     const data = {
       username: "",
@@ -18,9 +19,11 @@ const Login = () => {
     return data;
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = getData();
+    const response = await auth(data);
+    console.log(response);
   }
 
   return (

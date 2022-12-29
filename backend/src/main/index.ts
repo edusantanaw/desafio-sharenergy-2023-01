@@ -1,8 +1,10 @@
 import express from "express";
 import routes from "./config/routes";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors({ credentials: true, origin: "http://127.0.0.1:5173" }));
 app.use(express.json());
 routes(app);
 

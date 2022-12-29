@@ -6,7 +6,7 @@ function badRequest(error: { message: string }) {
 }
 function success(data: unknown) {
   return {
-    statusCode: 400,
+    statusCode: 200,
     body: data,
   };
 }
