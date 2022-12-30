@@ -1,28 +1,13 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useLayoutEffect,
-  useState,
-} from "react";
-import { data } from "../../protocols/auth";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
+import { AuthContextData, data, providerProp } from "../../types/auth";
 import { authService } from "../../services/auth.service";
 
-interface AuthContextData {
-  auth: (data: data) => Promise<{ success: boolean; data: string }>;
-  signout: () => void;
-  tokenAuth: string | null;
-  isLogged: boolean;
-}
 const AuthContext = createContext({} as AuthContextData);
-
-export interface providerProp {
-  children: ReactNode;
-}
 
 export const AuthProvider = ({ children }: providerProp) => {
   const [tokenAuth, setToken] = useState<string | null>(null);
   const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
     const tokenStorage = localStorage.getItem("@App:token");
@@ -30,6 +15,7 @@ export const AuthProvider = ({ children }: providerProp) => {
     if (tokenStorage) {
       setToken(tokenStorage);
       setIsLogged(true);
+      setLoading(false);
     }
   }, [isLogged]);
 
@@ -42,16 +28,19 @@ export const AuthProvider = ({ children }: providerProp) => {
     const response = await authService(data);
     setToken(response.data);
     setIsLogged(true);
+    setIsLogged(false);
     return response;
   }
 
-  function signout() {
+  function signout(): void {
     localStorage.removeItem("@App:token");
     resetStates();
   }
 
   return (
-    <AuthContext.Provider value={{ auth, tokenAuth, isLogged, signout }}>
+    <AuthContext.Provider
+      value={{ auth, isLoading, tokenAuth, isLogged, signout }}
+    >
       {children}
     </AuthContext.Provider>
   );

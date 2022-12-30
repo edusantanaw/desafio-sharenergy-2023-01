@@ -16,14 +16,14 @@ export function usePaginate<T>(
     }
   );
 
-  function next() {
+  function next(): void {
     setAtualPage((actual) => actual + 1);
   }
-  function prev() {
+  function prev(): void {
     if (atualPage > 0) setAtualPage((atual) => atual - 1);
   }
 
-  function setPageByIndex(index: number) {
+  function setPageByIndex(index: number): void {
     setAtualPage(index);
   }
 

@@ -1,11 +1,11 @@
-import { InvalidParamError } from "../../../src/utils/errors/InvalidParamError";
 import {
   badRequest,
   server,
   success,
 } from "../../../src/utils/helpers/httpResponse";
-import { AuthController } from "../../../src/presentational/controller/auth";
+import { AuthController } from "../../../src/presentational/controller/auth/auth";
 import { AuthUseCaseSpy } from "../../mocks/authUsecaseSpy";
+import { InvalidParamError } from "../../../src/utils/errors/InvalidEmailError";
 
 function makeSut() {
   const authUseCase = new AuthUseCaseSpy();
@@ -29,7 +29,7 @@ describe("Auth controller", () => {
       username: "valid_username",
       password: "",
     });
-    expect(response).toEqual(badRequest(new InvalidParamError("password")));
+    expect(response).toEqual(badRequest(new InvalidParamError("senha")));
   });
 
   test("Should return status 400 if user not exists", async () => {
@@ -38,7 +38,7 @@ describe("Auth controller", () => {
       username: "invalid_username",
       password: "valid_password",
     });
-    expect(response).toEqual(server("User not found!"));
+    expect(response).toEqual(server("Usuario não encontrado!"));
   });
 
   test("Should return status 400 if password is invalid", async () => {
@@ -48,7 +48,7 @@ describe("Auth controller", () => {
       username: "valid_username",
       password: "invalid_password",
     });
-    expect(response).toEqual(server("Password is invalid!"));
+    expect(response).toEqual(server("A senha é invalida!"));
   });
 
   test("Should return status 200 and access token if currect creadentials is provided", async () => {

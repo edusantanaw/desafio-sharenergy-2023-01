@@ -1,4 +1,4 @@
-import { AuthController } from "../../../presentational/controller/auth";
+import { AuthController } from "../../../presentational/controller/auth/auth";
 import { makeAuthUsecase } from "../usecases/makeAuth";
 
 export function makeAuthController() {

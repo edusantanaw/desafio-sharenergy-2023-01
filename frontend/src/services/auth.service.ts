@@ -1,10 +1,10 @@
-import { data, response } from "../protocols/auth";
+import { data, response } from "../types/auth";
 import Api from "../util/Api";
 
 const baseUrl = " http://localhost:5000/api/";
 const tokenKey = "@App:token";
 
-function makeStorage(value: any, key: any) {
+function saveIntoStorage(value: any, key: any) {
   localStorage.setItem(key, value);
 }
 
@@ -13,7 +13,7 @@ export async function authService(data: data) {
     const response = (await Api.post(baseUrl + "auth", data)) as response;
     const { accessToken } = response.data;
 
-    if (data.remember) makeStorage(accessToken, tokenKey);
+    if (data.remember) saveIntoStorage(accessToken, tokenKey);
 
     return { success: true, data: accessToken };
   } catch (error) {

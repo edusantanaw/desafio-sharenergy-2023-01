@@ -8,8 +8,8 @@ export class AuthUseCaseSpy implements authUseCase {
     this.isPasswordValid;
     this.token;
     this.userExists;
-    if (!this.userExists) throw "User not found!";
-    if (!this.isPasswordValid) throw "Password is invalid!";
+    if (!this.userExists) throw "Usuario não encontrado!";
+    if (!this.isPasswordValid) throw "A senha é invalida!";
     return this.token;
   }
 }

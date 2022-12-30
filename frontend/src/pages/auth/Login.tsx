@@ -7,22 +7,34 @@ const Login = () => {
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const rememberUser = useRef<HTMLInputElement | null>(null);
   const { auth } = useAuth();
+
   function getData() {
-    const data = {
-      username: "",
-      password: "",
-      remember: false,
-    };
-    if (usernameRef.current) data.username = usernameRef.current.value;
-    if (passwordRef.current) data.password = passwordRef.current.value;
-    if (rememberUser.current) data.remember = rememberUser.current.checked;
-    return data;
+    let username, password, remember;
+    if (usernameRef.current) username = usernameRef.current.value;
+    if (passwordRef.current) password = passwordRef.current.value;
+    if (rememberUser.current) remember = rememberUser.current.checked;
+    return { username, password, remember };
+  }
+
+  function validate(data: any) {
+    if (!data.username) {
+      return { valid: false, data: {} };
+    }
+    if (!data.password) {
+      return { valid: false, data: {} };
+    }
+    if (!data.remember) {
+      data.remember = false;
+    }
+    return { valid: true, validData: data };
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = getData();
-    const response = await auth(data);
+    const { validData, valid } = validate(data);
+    if (!valid || !validData) return;
+    const response = await auth(validData);
     console.log(response);
   }
 

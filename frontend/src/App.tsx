@@ -10,19 +10,28 @@ import {
 } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/query-core";
+import Cat from "./pages/cats/Cat";
+import Header from "./layout/Header";
 
 function App() {
   const queryClient = new QueryClient();
 
-  const { isLogged } = useAuth();
+  const { isLogged, isLoading } = useAuth();
+  if (isLoading) return <>Loading</>;
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <GlobalStyle />
+        <Header />
         <Routes>
           <Route
             path="/"
             element={isLogged ? <Home /> : <Navigate to="/auth" />}
+          />
+          <Route
+            path="/cat"
+            element={isLogged ? <Cat /> : <Navigate to="/auth" />}
           />
           <Route
             path="/auth"
