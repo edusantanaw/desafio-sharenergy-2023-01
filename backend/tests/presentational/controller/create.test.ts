@@ -1,21 +1,15 @@
-import { client } from "../../src/domain/entities/client";
-import { CreateClientController } from "../../src/presentational/controller/client/create";
-import { InvalidParamError } from "../../src/utils/errors/InvalidEmailError";
+import { client } from "../../../src/domain/entities/client";
+import { CreateClientController } from "../../../src/presentational/controller/client/create";
+import { InvalidParamError } from "../../../src/utils/errors/InvalidEmailError";
 import {
   badRequest,
   server,
   success,
-} from "../../src/utils/helpers/httpResponse";
-import { validClient } from "../../src/utils/helpers/validUser";
-import { CreateClientUsecaseSpy } from "../mocks/createClient";
-import { EmailValidatorSpy } from "../mocks/emailValidator";
-
-class CpfValidatorSpy {
-  valid = true;
-  isValid(value: string) {
-    return this.valid;
-  }
-}
+} from "../../../src/utils/helpers/httpResponse";
+import { validClient } from "../../../src/utils/helpers/validUser";
+import { CpfValidatorSpy } from "../../mocks/cpfValidator";
+import { CreateClientUsecaseSpy } from "../../mocks/createClient";
+import { EmailValidatorSpy } from "../../mocks/emailValidator";
 
 function makeSut() {
   const emailValidator = new EmailValidatorSpy();

@@ -1,5 +1,5 @@
 import { client } from "../../../domain/entities/client";
-import { validator } from "../../../protocols/helper/emailValidator";
+import { validator } from "../../../protocols/helper/validator";
 import { clientUsecase } from "../../../protocols/usecases/createClient";
 import { InvalidParamError } from "../../../utils/errors/InvalidEmailError";
 import {

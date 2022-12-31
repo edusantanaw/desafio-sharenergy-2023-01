@@ -1,5 +1,5 @@
 import { creadentials } from "../../../config/authCredentials";
-import { AuthUsecase } from "../../../domain/usecases/auth";
+import { AuthUsecase } from "../../../domain/usecases/auth/auth";
 import { GenerateToken } from "../../../utils/helpers/generateToken";
 
 export function makeAuthUsecase() {

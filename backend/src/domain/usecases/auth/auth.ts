@@ -1,5 +1,5 @@
-import { generateToken } from "../../protocols/helper/generateToken";
-import { creadentials } from "../../protocols/usecases/authusecase";
+import { generateToken } from "../../../protocols/helper/generateToken";
+import { creadentials } from "../../../protocols/usecases/authusecase";
 
 export class AuthUsecase {
   constructor(

@@ -1,5 +1,5 @@
 import { GenerateTokenSpy } from "../../mocks/generateToken";
-import { AuthUsecase } from "../../../src/domain/usecases/auth";
+import { AuthUsecase } from "../../../src/domain/usecases/auth/auth";
 
 function makeSut() {
   const creadentials = { username: "user", password: "pass" };
