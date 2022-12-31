@@ -1,15 +1,29 @@
 import express from "express";
 import routes from "./config/routes";
 import cors from "cors";
+import database from "../infra/db/connect";
 
-const app = express();
+class App {
+  app = express();
+  port = process.env.PORT || 5000;
 
-app.use(cors({ credentials: true, origin: "http://127.0.0.1:5173" }));
-app.use(express.json());
-routes(app);
+  middlewares() {
+    this.app.use(cors({ credentials: true, origin: "http://127.0.0.1:5173" }));
+    this.app.use(express.json());
+  }
 
-const Port = process.env.PORT || 5000;
+  async routes() {
+    await routes(this.app);
+  }
 
-app.listen(Port, () => {
-  console.log(`Server running at: ${Port} `);
-});
+  async init() {
+    this.app.listen(this.port, () =>
+      console.log(`App running at port ${this.port}`)
+    );
+    await this.routes();
+    await database();
+  }
+}
+
+const app = new App();
+app.init();

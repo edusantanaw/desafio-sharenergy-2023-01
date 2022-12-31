@@ -1,25 +1,6 @@
-import { ClientRepositorySpy } from "../../../../tests/mocks/repo/client";
-import { clientRepository } from "../../../protocols/repository/client";
-import { validClient } from "../../../utils/helpers/validUser";
-import { client } from "../../entities/client";
-
-class UpdateClientUsecase {
-  constructor(private clientRepository: clientRepository) {}
-
-  async update({ data, id }: { data: client; id: string }) {
-    const verifyClientExists = await this.clientRepository.loadById(id);
-    if (!verifyClientExists) throw "Cliente não encontrado!";
-
-    if (data.email !== verifyClientExists.email) {
-      const verifyEmailAlreadyBeingUsed =
-        await this.clientRepository.loadByEmail(data.email);
-      if (verifyEmailAlreadyBeingUsed) throw "O email já esta sendo usado!";
-    }
-
-    const newClient = await this.clientRepository.update({ data, id });
-    return newClient;
-  }
-}
+import { ClientRepositorySpy } from "../../mocks/repo/client";
+import { validClient } from "../../../src/utils/helpers/validUser";
+import { UpdateClientUsecase } from "../../../src/domain/usecases/client/update";
 
 function makeSut() {
   const clientRepository = new ClientRepositorySpy();

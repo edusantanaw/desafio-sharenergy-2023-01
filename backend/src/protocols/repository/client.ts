@@ -1,6 +1,6 @@
 import { client } from "../../domain/entities/client";
 
-type dataUpdate = {
+export type dataUpdate = {
   id: string;
   data: client;
 };

@@ -1,21 +1,6 @@
-import { ClientRepositorySpy } from "../../../../tests/mocks/repo/client";
-import { clientRepository } from "../../../protocols/repository/client";
-import { validClient } from "../../../utils/helpers/validUser";
-
-class LoadClientUsecase {
-  constructor(private readonly clientRepository: clientRepository) {}
-
-  async loadAll() {
-    const clients = await this.clientRepository.loadAll();
-    if (clients.length === 0) return null;
-    return clients;
-  }
-
-  async loadById(id: string) {
-    const client = await this.clientRepository.loadById(id);
-    return client;
-  }
-}
+import { ClientRepositorySpy } from "../../mocks/repo/client";
+import { validClient } from "../../../src/utils/helpers/validUser";
+import { LoadClientUsecase } from "../../../src/domain/usecases/client/loadClient";
 
 function makeSut() {
   const clientRepository = new ClientRepositorySpy();

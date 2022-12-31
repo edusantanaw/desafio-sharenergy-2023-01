@@ -1,63 +1,18 @@
-import { address, client } from "../../../domain/entities/client";
-import { InvalidParamError } from "../../../utils/errors/InvalidEmailError";
+import { client } from "../../../src/domain/entities/client";
+import { InvalidParamError } from "../../../src/utils/errors/InvalidEmailError";
 import {
   badRequest,
   server,
   success,
-} from "../../../utils/helpers/httpResponse";
-import { validator } from "../../../protocols/helper/validator";
-import { EmailValidatorSpy } from "../../../../tests/mocks/emailValidator";
-import { CpfValidatorSpy } from "../../../../tests/mocks/cpfValidator";
-import { validClient } from "../../../utils/helpers/validUser";
-
-interface updateClientUsecase {
-  update: (data: { data: client; id: string }) => Promise<client>;
-}
-
-class UdateClientController {
-  constructor(
-    private readonly emailValidator: validator,
-    private readonly cpfValidator: validator,
-    private readonly updateClientUsecase: updateClientUsecase
-  ) {}
-
-  async handle({ data, id }: { data: client; id: string }) {
-    try {
-      const { address, cpf, email, name, phone } = data;
-      if (!id) return badRequest(new InvalidParamError("id"));
-      if (!name) return badRequest(new InvalidParamError("nome"));
-
-      if (!this.emailValidator.isValid(email))
-        return badRequest(new InvalidParamError("email"));
-
-      if (!phone) return badRequest(new InvalidParamError("telefone"));
-
-      if (!this.cpfValidator.isValid(cpf))
-        return badRequest(new InvalidParamError("cpf"));
-
-      if (!address) return badRequest(new InvalidParamError("endereço"));
-      const updatedClient = await this.updateClientUsecase.update({
-        data: data,
-        id: id,
-      });
-      return success(updatedClient);
-    } catch (error) {
-      return server(error);
-    }
-  }
-}
-class UpdateClientUsecase {
-  client: client | null = null;
-  emailAlreadyUsed = false;
-  async update({ data, id }: { data: client; id: string }) {
-    if (!this.client) throw "Cliente não encontrado!";
-    if (this.emailAlreadyUsed) throw "O email já esta sendo usado!";
-    return this.client;
-  }
-}
+} from "../../../src/utils/helpers/httpResponse";
+import { EmailValidatorSpy } from "../../mocks/emailValidator";
+import { CpfValidatorSpy } from "../../mocks/cpfValidator";
+import { validClient } from "../../../src/utils/helpers/validUser";
+import { UdateClientController } from "../../../src/presentational/controller/client/update";
+import { UpdateClientUsecaseSpy } from "../../mocks/updateClient";
 
 function makeSut() {
-  const updateClientUsecase = new UpdateClientUsecase();
+  const updateClientUsecase = new UpdateClientUsecaseSpy();
   const emailValidator = new EmailValidatorSpy();
   const cpfValidator = new CpfValidatorSpy();
   const updateClientController = new UdateClientController(

@@ -10,6 +10,14 @@ function success(data: unknown) {
     body: data,
   };
 }
+
+function noFound(data: string) {
+  return {
+    statusCode: 204,
+    body: data,
+  };
+}
+
 function server(error: unknown) {
   return {
     statusCode: 400,
@@ -17,4 +25,4 @@ function server(error: unknown) {
   };
 }
 
-export { badRequest, server, success };
+export { badRequest, server, success, noFound };

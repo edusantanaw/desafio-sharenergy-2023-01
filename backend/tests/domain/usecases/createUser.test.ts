@@ -1,6 +1,6 @@
-import { ClientRepositorySpy } from "../../../../tests/mocks/repo/client";
-import { validClient } from "../../../utils/helpers/validUser";
-import { CreateClientUsecase } from "./create";
+import { ClientRepositorySpy } from "../../mocks/repo/client";
+import { validClient } from "../../../src/utils/helpers/validUser";
+import { CreateClientUsecase } from "../../../src/domain/usecases/client/create";
 
 function makeSut() {
   const clientRepository = new ClientRepositorySpy();
