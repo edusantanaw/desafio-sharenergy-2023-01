@@ -10,7 +10,7 @@ function makeSut() {
 }
 
 describe("Load all", () => {
-  test("Should return status 204 if clients not found", async () => {
+  test("Should return  status 204 if clients not found", async () => {
     const { loadAllClient } = makeSut();
     const response = await loadAllClient.handle();
     expect(response).toEqual(noFound("Clients"));

@@ -12,6 +12,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/query-core";
 import Cat from "./pages/cats/Cat";
 import Header from "./layout/Header";
+import Crud from "./pages/crud/Crud";
 
 function App() {
   const queryClient = new QueryClient();
@@ -32,6 +33,10 @@ function App() {
           <Route
             path="/cat"
             element={isLogged ? <Cat /> : <Navigate to="/auth" />}
+          />
+          <Route
+            path="/crud"
+            element={isLogged ? <Crud /> : <Navigate to="/auth" />}
           />
           <Route
             path="/auth"

@@ -23,4 +23,7 @@ export class ClientRepositorySpy implements clientRepository {
   async update(data: { data: client; id: string }) {
     return this.client;
   }
+  async delete(id: string) {
+    return 
+  }
 }

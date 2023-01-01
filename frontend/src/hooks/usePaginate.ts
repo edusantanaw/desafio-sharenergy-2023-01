@@ -19,6 +19,7 @@ export function usePaginate<T>(
   function next(): void {
     setAtualPage((actual) => actual + 1);
   }
+
   function prev(): void {
     if (atualPage > 0) setAtualPage((atual) => atual - 1);
   }

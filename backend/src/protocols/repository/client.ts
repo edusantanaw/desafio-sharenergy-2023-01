@@ -11,4 +11,5 @@ export interface clientRepository {
   loadAll: () => Promise<client[]>;
   loadById: (id: string) => Promise<client | null>;
   update: (data: dataUpdate) => Promise<client>;
+  delete: (id: string) => Promise<void>;
 }

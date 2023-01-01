@@ -35,6 +35,24 @@ export default () => {
           type: String,
         },
       },
+      createdAt: {
+        type: Date,
+        default: () => Date.now(),
+        immutable: true,
+      },
+      updatedAt: {
+        type: Date,
+        default: () => Date.now(),
+      },
+      deletedAt: {
+        date: {
+          type: Date,
+        },
+        deleted: {
+          type: Boolean,
+          default: false,
+        },
+      },
     })
   );
   return Client;

@@ -1,8 +1,8 @@
 import { data, response } from "../types/auth";
 import Api from "../util/Api";
+import { tokenKey } from "../util/keys";
 
 const baseUrl = " http://localhost:5000/api/";
-const tokenKey = "@App:token";
 
 function saveIntoStorage(value: any, key: any) {
   localStorage.setItem(key, value);

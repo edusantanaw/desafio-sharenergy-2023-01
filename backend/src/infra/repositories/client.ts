@@ -27,7 +27,7 @@ export class ClientRepository implements clientRepository {
   }
 
   async loadAll() {
-    const clientReponse = (await client.find()) as client[];
+    const clientReponse = (await client.find({ deletedAt: false })) as client[];
     return clientReponse;
   }
 
@@ -35,5 +35,20 @@ export class ClientRepository implements clientRepository {
     const updatedClient = await client.create(data);
     await updatedClient.save();
     return updatedClient as client;
+  }
+  async delete(id: string) {
+    await client.findByIdAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          deletedAt: {
+            deleted: true,
+            date: Date.now(),
+          },
+        },
+      },
+      { new: true }
+    );
+    return;
   }
 }

@@ -1,9 +1,7 @@
-import { loadClientUsecase } from "../../../src/protocols/usecases/loadClient";
 import { InvalidParamError } from "../../../src/utils/errors/InvalidEmailError";
 import {
   badRequest,
   noFound,
-  server,
   success,
 } from "../../../src/utils/helpers/httpResponse";
 import { LoadClientUsecaseSpy } from "../../mocks/loadClientUsecase";

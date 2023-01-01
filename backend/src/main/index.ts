@@ -17,11 +17,12 @@ class App {
   }
 
   async init() {
+    this.middlewares();
+    await this.routes();
+    await database();
     this.app.listen(this.port, () =>
       console.log(`App running at port ${this.port}`)
     );
-    await this.routes();
-    await database();
   }
 }
 
