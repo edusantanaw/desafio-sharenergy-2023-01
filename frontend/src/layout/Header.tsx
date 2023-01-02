@@ -5,16 +5,16 @@ import { HeaderContainer } from "./header.styles";
 const Header = () => {
   return (
     <HeaderContainer>
-      <h1>Header</h1>
+      <h1>Logo</h1>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Principal</Link>
         </li>
         <li>
-          <Link to="/cat">Cat</Link>
+          <Link to="/cat">Pagina 2</Link>
         </li>
         <li>
-          <Link to="/crud">Crud</Link>
+          <Link to="/crud">Pagina 3</Link>
         </li>
       </ul>
     </HeaderContainer>

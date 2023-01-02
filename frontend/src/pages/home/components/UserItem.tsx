@@ -13,8 +13,10 @@ export const UserItem = ({ user }: { user: users }) => {
           </h2>
         </div>
         <span>{user.email}</span>
-        <span>{user.login.username}</span>
-        <span>{user.registered.age}</span>
+        <div className="nickname">
+          <span><p>user: </p>{user.login.username}</span>
+          <span><p>idade:</p> {user.registered.age} anos</span>
+        </div>
       </div>
     </Item>
   );

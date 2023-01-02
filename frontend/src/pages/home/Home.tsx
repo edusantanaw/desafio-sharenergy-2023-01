@@ -3,42 +3,47 @@ import { usePaginate } from "../../hooks/usePaginate";
 import { loadUser, searchUser } from "../../services/randomUser.service";
 import { users } from "../../types/randomUser";
 import UserList from "./components/UserList";
-import { HomeContainer } from "./home.styles";
+import { HomeContainer, Title } from "./home.styles";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { Search } from "./components/Search";
 
 const Home = () => {
-  const { atualPage, isLoading, data, next, prev } = usePaginate(
-    loadUser,
-    "users"
-  );
+  const { atualPage, isLoading, data, next, prev, setPageByIndex } =
+    usePaginate(loadUser, "users");
   const [searchResults, setSearchResults] = useState<users[] | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
 
-  async function handleSearch() {
-    if (inputRef.current) {
-      const target = inputRef.current.value;
-      const types = ["name", "email"];
+
+  async function handleSearch(target: string, types: string[]) {
       const data = await searchUser(target.toLowerCase(), types);
       setSearchResults(data);
     }
-  }
+  
 
   if (isLoading) return <>loading</>;
   return (
     <HomeContainer>
-      <h1>Users</h1>
-      <input type="text" ref={inputRef} />
-      <button onClick={async () => await handleSearch()}>onClick</button>
-      <button onClick={next}>Next</button>
-      <button onClick={prev}>Previous</button>
-      <span>{atualPage}</span>
-      {data && <UserList list={!searchResults ? data : searchResults} />}
-      {Array(10)
-        .fill(" ")
-        .map((n) => (
-          <span>
-            {n}a{console.log(n)}
-          </span>
-        ))}
+      <div className="content">
+        <Title>Usuarios</Title>
+        <Search handleSearch={handleSearch}  />
+        {data && <UserList list={!searchResults ? data : searchResults} />}
+        {!searchResults && (
+          <div className="current_page">
+            <FaAngleLeft onClick={prev} id="left" />
+            {Array(5)
+              .fill("")
+              .map((n, i) => (
+                <span
+                  id={atualPage === i  ? "actual" : ""}
+                  onClick={() => setPageByIndex(i + 1)}
+                >
+                  {i + 1}
+                </span>
+              ))}
+            <FaAngleRight onClick={next} id="right" />
+            {atualPage > 5 && <span id="actual">{atualPage}</span>}
+          </div>
+        )}
+      </div>
     </HomeContainer>
   );
 };
