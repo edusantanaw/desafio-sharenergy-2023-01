@@ -11,7 +11,6 @@ export default () => {
       email: {
         required: true,
         type: String,
-        unique: true,
       },
       cpf: {
         required: true,

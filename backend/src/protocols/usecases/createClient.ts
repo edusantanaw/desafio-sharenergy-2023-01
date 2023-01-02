@@ -1,5 +1,5 @@
 import { client } from "../../domain/entities/client";
 
-export interface clientUsecase {
+export interface createClientUsecase {
   create: (data: client) => Promise<client>;
 }

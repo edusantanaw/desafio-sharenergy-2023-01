@@ -3,6 +3,7 @@ import { statusCode } from "../../util/statusCodeList";
 import { CatContainer } from "./cat.styles";
 import catAnimation from "../../assets/cats.json";
 import Lottie from "lottie-react";
+import { FaAngleDown } from "react-icons/fa";
 
 const Cat = () => {
   const [status, setStatus] = useState<number | null>(null);
@@ -25,10 +26,11 @@ const Cat = () => {
 
   return (
     <CatContainer>
+      <div className="content">
       <div className="status">
-        <h1>Cats by status</h1>
         <span onClick={handleVisible}>
-          {status ? `Current status: ${status}` : "Select status code"}
+        <p>  {status ? `Status atual: ${status}` : "Selecionar status code"}</p>
+        <FaAngleDown />
         </span>
         {visible && (
           <ul className="list">
@@ -39,10 +41,11 @@ const Cat = () => {
         )}
       </div>
       {status ? (
-        <img src={`https://http.cat/${status}`} />
+        <img loading="lazy" src={`https://http.cat/${status}`} />
       ) : (
-        <Lottie id="cat" {...defaultConfig} style={{ width: "20em" }} />
+        <Lottie id="cat" {...defaultConfig} style={{ width: "27em" }} />
       )}
+      </div>
     </CatContainer>
   );
 };

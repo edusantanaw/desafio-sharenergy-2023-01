@@ -21,7 +21,7 @@ function makeHeaders() {
 export async function loadAllClient() {
   const options = makeHeaders();
   const response = await Api.get(baseUrl + "clients", options);
-  console.log(response);
+  console.log(response)
   if (response.data) return response.data as client[];
   return null;
 }
@@ -29,6 +29,7 @@ export async function loadAllClient() {
 export async function createClient(data: client) {
   const options = makeHeaders();
   const response = await Api.post(baseUrl + "client", data, options);
+  console.log(response)
   return response.data as client;
 }
 
@@ -42,4 +43,10 @@ export async function deleteClient(id: string) {
   const options = makeHeaders();
   const response = await Api.delete(`${baseUrl}client/${id}`, options);
   return response.data;
+}
+
+export async function loadById(id: string) {
+ const options = makeHeaders()
+  const response = await Api.get(`${baseUrl}/client/${id}`, options)
+  return response.data
 }

@@ -13,10 +13,9 @@ export const AuthProvider = ({ children }: providerProp) => {
     const tokenStorage = localStorage.getItem("@App:token");
 
     if (tokenStorage) {
-      setToken(tokenStorage);
       setIsLogged(true);
-      setLoading(false);
     }
+    setLoading(false);
   }, [isLogged]);
 
   const resetStates = () => {

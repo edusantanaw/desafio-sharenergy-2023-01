@@ -37,7 +37,7 @@ gap: 1em;
   .current_filter{
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 0.3em;
     cursor: pointer;
   }
 

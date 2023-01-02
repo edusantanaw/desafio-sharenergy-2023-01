@@ -20,14 +20,14 @@ export class ClientRepository implements clientRepository {
   }
 
   async loadByEmail(email: string) {
-    const clientReponse = (await client.findById({
+    const clientReponse = (await client.findOne({
       email: email,
     })) as client | null;
     return clientReponse;
   }
 
   async loadAll() {
-    const clientReponse = (await client.find({ deletedAt: false })) as client[];
+    const clientReponse = (await client.find({ deletedAt: {deleted: false} })) as client[];
     return clientReponse;
   }
 

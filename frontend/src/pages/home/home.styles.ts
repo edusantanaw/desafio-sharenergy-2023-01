@@ -11,9 +11,9 @@ export const HomeContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 2em;
-    box-shadow: 0px 0px 12px #afafaf;
+    box-shadow: 0px 0px 10px #afafaf;
   }
 
   .current_page {

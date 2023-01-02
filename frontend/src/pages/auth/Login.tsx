@@ -1,12 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth/authContext";
-import { Form, Input, Label, LoginContainer } from "./login.styles";
+import { Label } from "../../styles/Global";
+import { Input } from "../home/components/search.style";
+import { Form, LoginContainer } from "./login.styles";
 
 const Login = () => {
   const usernameRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const rememberUser = useRef<HTMLInputElement | null>(null);
+  const [error, setError] = useState<string | null>(null)
   const { auth } = useAuth();
+  const navigate = useNavigate()
 
   function getData() {
     let username, password, remember;
@@ -18,10 +23,10 @@ const Login = () => {
 
   function validate(data: any) {
     if (!data.username) {
-      return { valid: false, data: {} };
+      return { valid: false, validData: 'O username é necessario!' };
     }
     if (!data.password) {
-      return { valid: false, data: {} };
+      return { valid: false, validData: 'A senha é necessaria!' };
     }
     if (!data.remember) {
       data.remember = false;
@@ -33,21 +38,32 @@ const Login = () => {
     e.preventDefault();
     const data = getData();
     const { validData, valid } = validate(data);
-    if (!valid || !validData) return;
+    if (!valid){
+      setError(validData as string)
+      return
+    }
     const response = await auth(validData);
-    console.log(response);
+    if(!response.success){
+      setError(response.data)
+      return
+    }
+    else if(error) {
+      setError(null)
+    }
+    navigate('/')
   }
 
   return (
     <LoginContainer>
-      <h1>Login</h1>
       <Form onSubmit={(e) => handleSubmit(e)}>
         <div className="credentials">
+          <h2>Login</h2>
           <Label id="username">Username</Label>
           <Input
             type="text"
             id="username"
             placeholder="example: edusantanaw"
+            width="100%"
             ref={usernameRef}
           />
         </div>
@@ -58,13 +74,15 @@ const Login = () => {
             id="password"
             placeholder="**********"
             ref={passwordRef}
+            width="100%"
           />
         </div>
         <div className="remember">
-          <Input type="checkbox" id="remember" ref={rememberUser} />
-          <Label id="remember">Remember me</Label>
+          <input type="checkbox" id="remember" ref={rememberUser} />
+          <Label id="remember"  htmlFor="remember"  size="1em">Remember me</Label>
         </div>
-        <Input type="submit" />
+        {error && <span id="error">{error}</span>}
+        <Input width="100%" type="submit" />
       </Form>
     </LoginContainer>
   );

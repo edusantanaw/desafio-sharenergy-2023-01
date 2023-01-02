@@ -1,6 +1,6 @@
 import { client } from "../../../domain/entities/client";
 import { validator } from "../../../protocols/helper/validator";
-import { clientUsecase } from "../../../protocols/usecases/createClient";
+import { createClientUsecase } from "../../../protocols/usecases/createClient";
 import { InvalidParamError } from "../../../utils/errors/InvalidEmailError";
 import {
   badRequest,
@@ -12,14 +12,13 @@ export class CreateClientController {
   constructor(
     private readonly emailValidator: validator,
     private readonly cpfValidator: validator,
-    private readonly clientUsecase: clientUsecase
+    private readonly clientUsecase: createClientUsecase
   ) {}
   async handle(data: client) {
     try {
       const { address, cpf, email, name, phone } = data;
-
       if (!name) return badRequest(new InvalidParamError("nome"));
-
+      
       if (!this.emailValidator.isValid(email))
         return badRequest(new InvalidParamError("email"));
 

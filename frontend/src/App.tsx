@@ -24,7 +24,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router>
         <GlobalStyle />
-        <Header />
+        {isLogged && <Header />}
         <Routes>
           <Route
             path="/"

@@ -1,11 +1,10 @@
-import { apiResponse, users } from "../types/randomUser";
+import { users } from "../types/randomUser";
 
 export async function filterData(
-  response: apiResponse,
+  data: users[],
   target: string,
   types: string[]
 ) {
-  const data = response.data.results;
   const filteredData = await getData(types, data, target);
   return filteredData;
 }
@@ -41,7 +40,6 @@ const filter = (
   target: string,
   current: users[]
 ) => {
-  console.log(method)
   const dataFiltered = users.filter(
     (user) =>
       method(user).startsWith(target) &&

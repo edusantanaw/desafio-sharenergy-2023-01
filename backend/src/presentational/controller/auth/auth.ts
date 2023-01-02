@@ -14,7 +14,7 @@ export class AuthController {
       if (!username) return badRequest(new InvalidParamError("username"));
       if (!password) return badRequest(new InvalidParamError("senha"));
       const accessToken = await this.autUseCase.auth(username, password);
-      return success({ accessToken, user: username });
+      return success({ accessToken });
     } catch (error) {
       return server(error);
     }
