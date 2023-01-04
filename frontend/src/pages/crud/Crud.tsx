@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Loading } from "../../components/Loading";
 import { useApi } from "../../hooks/useApi";
 import { deleteClient, loadAllClient } from "../../services/client.service";
 import { client } from "../../types/client";
@@ -35,13 +36,15 @@ const Crud = () => {
 
   function handleUpdateClientModal() {
     updateClient ? setUpdateClient(false) : setUpdateClient(true);
-    setShowInfos(false)
+    setShowInfos(false);
   }
 
   async function handleDeleteClient(id: string | undefined) {
     if (id) deleteClient(id);
     showInfo();
   }
+
+  if (isLoading) return <Loading />;
 
   return (
     <CrudContainer>

@@ -1,4 +1,4 @@
-import { Input, Label, Form } from "./ModalClient";
+import { Input, Label, Form } from "./styles/ModalClient";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { clientForm } from "../../../util/schemas/client";

@@ -2,7 +2,7 @@ import { FieldValues } from "react-hook-form";
 import { createClient } from "../../../services/client.service";
 import { fieldValues } from "../../../types/client";
 import FormClient from "./Form";
-import { Modal } from "./ModalClient";
+import { Modal } from "./styles/ModalClient";
 
 interface props {
   handleModal: () => void;

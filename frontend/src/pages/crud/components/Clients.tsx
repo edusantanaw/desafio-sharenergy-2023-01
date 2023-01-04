@@ -1,5 +1,5 @@
 import { client } from "../../../types/client";
-import { ClientContainer, ClientList } from "./client.style";
+import { ClientContainer, ClientList } from "./styles/client.style";
 import { AiOutlineEye } from "react-icons/ai";
 
 interface props {
@@ -14,14 +14,14 @@ const Clients = ({ handleClient, data }: props) => {
         {data ? (
           data.map((client, i) => (
             <li
-              onClick={() => handleClient(client)}
+              
               className="clients"
               key={i}
             >
               <span>{client.name}</span>
               <span>{client.phone}</span>
               <span>{client.address.city}</span>
-              <span id="eye">
+              <span id="eye" onClick={() => handleClient(client)}>
                 <AiOutlineEye /> infos
               </span>
             </li>

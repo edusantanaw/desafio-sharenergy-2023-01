@@ -36,8 +36,14 @@ export const HomeContainer = styled.section`
       cursor: pointer;
     }
 
-    #actual{
-      background-color: #EF233C;
+    #actual {
+      background-color: #ef233c;
+    }
+  }
+  @media (max-width: 1050px) {
+    padding: 7em 2em;
+    .content {
+      width: 100%;
     }
   }
 `;
@@ -48,5 +54,3 @@ export const Title = styled.h1`
   letter-spacing: 2px;
   padding-bottom: 0.5em;
 `;
-
-

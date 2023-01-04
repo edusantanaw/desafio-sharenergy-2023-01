@@ -28,5 +28,7 @@ export function usePaginate<T>(
     setAtualPage(index);
   }
 
+ 
+
   return { next, prev, isLoading, data, atualPage, setPageByIndex };
 }

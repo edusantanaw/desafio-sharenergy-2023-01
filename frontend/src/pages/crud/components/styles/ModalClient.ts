@@ -57,6 +57,13 @@ export const Form = styled.form`
     cursor: pointer;
   }
 
+  @media (max-width: 1100px){
+    width: 28em;
+  }
+
+  @media (max-width: 700px){
+    width: 26em;
+  }
 
 `;
 

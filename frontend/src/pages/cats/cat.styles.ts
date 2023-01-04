@@ -69,4 +69,16 @@ export const CatContainer = styled.section`
     height: 26em;
     object-fit: contain;
   }
+
+  @media (max-width: 900px){
+      .content{
+        width: 80%;
+      }
+  }
+
+  @media (max-width: 600px){
+    .content{
+      width: 100%;
+    }
+  }
 `;

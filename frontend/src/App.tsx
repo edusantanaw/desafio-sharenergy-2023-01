@@ -13,13 +13,14 @@ import { QueryClient } from "@tanstack/query-core";
 import Cat from "./pages/cats/Cat";
 import Header from "./layout/Header";
 import Crud from "./pages/crud/Crud";
+import { Loading } from "./components/Loading";
 
 function App() {
   const queryClient = new QueryClient();
 
   const { isLogged, isLoading } = useAuth();
-  if (isLoading) return <>Loading</>;
-
+  if (isLoading) return <Loading />
+console.log(isLogged)
   return (
     <QueryClientProvider client={queryClient}>
       <Router>

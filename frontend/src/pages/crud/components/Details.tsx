@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { deleteClient } from "../../../services/client.service";
 import { client } from "../../../types/client";
-import { DetailsContainer } from "./details.styles";
+import { DetailsContainer } from "./styles/details.styles";
 import { AiOutlineClose } from "react-icons/ai";
 
 interface props {
@@ -13,8 +13,6 @@ interface props {
 
 const Details = ({ client, handleModal, handleDeleteClient, showInfo }: props) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-
 
   return (
     <>

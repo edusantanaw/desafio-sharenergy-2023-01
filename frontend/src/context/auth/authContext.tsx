@@ -1,6 +1,7 @@
 import { createContext, useContext, useLayoutEffect, useState } from "react";
 import { AuthContextData, data, providerProp } from "../../types/auth";
 import { authService } from "../../services/auth.service";
+import { tokenKey } from "../../util/keys";
 
 const AuthContext = createContext({} as AuthContextData);
 
@@ -10,10 +11,11 @@ export const AuthProvider = ({ children }: providerProp) => {
   const [isLoading, setLoading] = useState(true);
 
   useLayoutEffect(() => {
-    const tokenStorage = localStorage.getItem("@App:token");
+    const tokenStorage = localStorage.getItem(tokenKey);
 
     if (tokenStorage) {
       setIsLogged(true);
+      setToken(tokenStorage);
     }
     setLoading(false);
   }, [isLogged]);
@@ -21,18 +23,20 @@ export const AuthProvider = ({ children }: providerProp) => {
   const resetStates = () => {
     setToken(null);
     setIsLogged(false);
+    setLoading(false);
   };
 
   async function auth(data: data) {
     const response = await authService(data);
     setToken(response.data);
-    setIsLogged(true);
-    setIsLogged(false);
+    if (response.success) {
+      setIsLogged(true);
+    }
     return response;
   }
 
   function signout(): void {
-    localStorage.removeItem("@App:token");
+    localStorage.removeItem(tokenKey);
     resetStates();
   }
 

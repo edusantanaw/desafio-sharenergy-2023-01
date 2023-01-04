@@ -6,6 +6,10 @@ export const List = styled.ul`
   margin-top: 1em;
   display: flex;
   gap: 2em;
+  @media (max-width: 850px) {
+    flex-direction: column;
+    align-items: center;
+}
 `;
 
 export const Item = styled.li`
@@ -22,7 +26,7 @@ export const Item = styled.li`
     border-radius: 50%;
     object-fit: cover;
   }
-  .photo{
+  .photo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,12 +40,19 @@ export const Item = styled.li`
     align-items: flex-end;
     flex-direction: column;
     gap: 0.9em;
-    h2{
+    h2 {
       font-size: 1.7em;
       font-weight: 500;
     }
-    span{
+    span {
       font-weight: 300;
     }
+  }
+  @media (max-width: 850px) {
+    width: 80%;
+  }
+
+  @media (max-width: 600px) {
+      width: 100%;
   }
 `;

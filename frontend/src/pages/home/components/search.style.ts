@@ -44,6 +44,13 @@ export const SearchContainer = styled.div`
     color: #8d99ae;
     background-color: transparent;
   }
+
+  @media (max-width: 700px){
+    .current_filter{
+      height: 3.4em;
+      font-size: 0.8em;
+    }
+  }
 `;
 export const Input = styled.input`
   width: 37em;
@@ -58,5 +65,10 @@ export const Input = styled.input`
   }
   &::placeholder {
     color: #8d99ae;
+  }
+
+  @media (max-width: 700px){
+    width: 25em;
+    height: 3.3em;
   }
 `;

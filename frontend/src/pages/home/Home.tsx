@@ -6,6 +6,7 @@ import UserList from "./components/UserList";
 import { HomeContainer, Title } from "./home.styles";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { Search } from "./components/Search";
+import { Loading } from "../../components/Loading";
 
 const Home = () => {
   const { atualPage, isLoading, data, next, prev, setPageByIndex } =
@@ -17,9 +18,8 @@ const Home = () => {
       const data = await searchUser(target.toLowerCase(), types);
       setSearchResults(data);
     }
-  console.log(data)
 
-  if (isLoading) return <>loading</>;
+  if (isLoading) return <Loading />
   return (
     <HomeContainer>
       <div className="content">

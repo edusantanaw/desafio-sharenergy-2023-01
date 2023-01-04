@@ -12,6 +12,7 @@ export const CrudContainer =styled.section`
     .header{
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 0 5em 0 5em;
         h2{
             color: #fff;
@@ -28,6 +29,26 @@ export const CrudContainer =styled.section`
     left: 0;
     z-index: 3;
   }
+
+  @media (max-width: 1000px ){
+    padding: 7em 2em;
+  }
+  @media (max-width: 800px){
+
+    .header{
+        h2{
+            font-size: 1.6em;
+        }
+    }
+
+  }
+  @media (max-width: 600px){
+    padding: 7em 0em;
+
+    .header{
+        padding: 0 2em;
+    }
+  }
 `
 
 export const Button = styled.button`
@@ -41,5 +62,10 @@ export const Button = styled.button`
     cursor: pointer;
     &:hover {
         opacity: 0.9;
+    }
+
+    @media (max-width: 800px){
+        width: 11em;
+        height: 3.3em;
     }
 `

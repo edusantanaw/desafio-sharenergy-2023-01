@@ -4,7 +4,7 @@ import { updateClient } from "../../../services/client.service";
 import { data, fieldValues } from "../../../types/client";
 import { client } from "../../../types/client";
 import FormClient from "./Form";
-import { Modal } from "./ModalClient";
+import { Modal } from "./styles/ModalClient";
 
 interface props {
   handleModal: () => void;
