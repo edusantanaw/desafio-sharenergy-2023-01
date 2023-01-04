@@ -13,7 +13,7 @@ export async function authService(data: data) {
     const response = (await Api.post(baseUrl + "auth", data)) as response;
     const { accessToken } = response.data;
 
-     saveIntoStorage(accessToken, tokenKey);
+    saveIntoStorage(accessToken, tokenKey);
 
     return { success: true, data: accessToken };
   } catch (error) {

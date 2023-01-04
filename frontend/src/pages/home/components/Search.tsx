@@ -5,14 +5,14 @@ import { FaAngleDown } from "react-icons/fa";
 interface props {
   handleSearch: (target: string, types: string[]) => Promise<void>;
 }
+const typeFilters = ["todos", "name", "email", "username"];
 
 export const Search = ({ handleSearch }: props) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [filter, setFilter] = useState<string[]>([]);
+  const [filter, setFilter] = useState<string[]>(["name", "email", "username"]);
   const [currentFilter, setCurrentFilter] = useState<string>("todos");
   const [filterDropDown, setFilterDropDown] = useState(false);
 
-  const typeFilters = ["todos", "name", "email", "username"];
 
   async function search() {
     if (inputRef.current) {

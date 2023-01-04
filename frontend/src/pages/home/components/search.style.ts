@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const SearchContainer = styled.div`
-display: flex;
-gap: 1em;
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
   #actual {
     opacity: 0.9;
   }
@@ -10,47 +11,52 @@ gap: 1em;
     display: flex;
     gap: 1em;
   }
-  .filter{
+  .filter {
     position: relative;
   }
 
-  .filters{
+  .filters {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     margin-top: 0.4em;
     position: absolute;
     right: 0;
-    span{
+    background-color: #2B2D42;
+    span {
       cursor: pointer;
-      &:hover{
+      &:hover {
         opacity: 0.8;
       }
     }
   }
-  .filters, .current_filter {
-    background-color: #333;
-    color: #fff;
+  .filters,
+  .current_filter {
     padding: 0.6em 1em;
-    border-radius: 5px;
-}
+    border: 1px solid #8d99ae;
+  }
 
-  .current_filter{
+  .current_filter {
     display: flex;
+    height: 3.2em;
     align-items: center;
     gap: 0.3em;
     cursor: pointer;
+    color: #8d99ae;
+    background-color: transparent;
   }
-
-`
+`;
 export const Input = styled.input`
-  width: 35em;
-  height: 3.5em;
-  border-radius: 5px;
+  width: 37em;
+  height: 3.8em;
   margin-bottom: 2em;
-  border: none;
-  background-color: #dfdfdf;
-  padding: 1em;
+  border: 1px solid #8d99ae;
+  color: #fff;
+  background-color: transparent;
+  padding-left: 2em;
   &:focus {
     outline: none;
+  }
+  &::placeholder {
+    color: #8d99ae;
   }
 `;

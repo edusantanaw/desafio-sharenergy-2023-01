@@ -17,7 +17,7 @@ const Home = () => {
       const data = await searchUser(target.toLowerCase(), types);
       setSearchResults(data);
     }
-  
+  console.log(data)
 
   if (isLoading) return <>loading</>;
   return (
@@ -33,7 +33,7 @@ const Home = () => {
               .fill("")
               .map((n, i) => (
                 <span
-                  id={atualPage === i  ? "actual" : ""}
+                  id={atualPage === i + 1  ? "actual" : ""}
                   onClick={() => setPageByIndex(i + 1)}
                 >
                   {i + 1}

@@ -5,15 +5,12 @@ export const CatContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2em 4em 0 4em;
+  padding: 7em 4em 0 4em;
 
   .content{
-    background-color: #fff;
     width: 50%;
     height: 33em;
     border-radius: 20px;
-    box-shadow: 0px 0px 12px #afafaf;
-    padding: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,11 +19,11 @@ export const CatContainer = styled.section`
     position: relative;
     width: 100%;
     span {
-      padding: 0.7em 1.2em;
-      background-color: #000;
+      padding: 0.9em 1.2em;
       color: #fff;
       border-radius: 5px;
       display: flex;
+      border: 1px solid #8d99ae;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
@@ -40,7 +37,7 @@ export const CatContainer = styled.section`
       }
     }
     ul {
-      background-color: #000;
+      background-color: #0E1128;
       border-radius: 5px;
       position: absolute;
       margin-top: 0.5em;
@@ -53,12 +50,15 @@ export const CatContainer = styled.section`
       color: #fff;
       overflow-y: auto;
       z-index: 3;
+      border: 1px solid #8d99ae;
       li {
         cursor: pointer;
         width: 100%;
-        background-color: #000;
+        background-color: #0E1128;
+        font-size: 1.2em;
         &:hover {
-          opacity: 0.7;
+          background-color: #0E1120;
+        opacity: 0.9;
         }
       }
     }

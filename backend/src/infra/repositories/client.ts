@@ -15,7 +15,7 @@ export class ClientRepository implements clientRepository {
   }
 
   async loadById(id: string) {
-    const clientReponse = (await client.findById({ id: id })) as client | null;
+    const clientReponse = (await client.findById(id)) as client | null;
     return clientReponse;
   }
 

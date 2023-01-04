@@ -5,7 +5,7 @@ export function usePaginate<T>(
   service: (atual: number) => Promise<T[]>,
   queryId: string
 ) {
-  const [atualPage, setAtualPage] = useState<number>(0);
+  const [atualPage, setAtualPage] = useState<number>(1);
 
   const { data, isLoading } = useQuery(
     [queryId, atualPage],
@@ -21,7 +21,7 @@ export function usePaginate<T>(
   }
 
   function prev(): void {
-    if (atualPage > 0) setAtualPage((atual) => atual - 1);
+    if (atualPage > 1) setAtualPage((atual) => atual - 1);
   }
 
   function setPageByIndex(index: number): void {

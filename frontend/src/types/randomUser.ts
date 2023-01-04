@@ -14,7 +14,7 @@ export type users = {
     username: string;
   };
   picture: {
-    medium: string;
+    large: string;
   };
   registered: {
     age: number;

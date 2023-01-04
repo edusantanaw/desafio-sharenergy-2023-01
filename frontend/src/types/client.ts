@@ -5,7 +5,7 @@ export type address = {
 };
 
 export type client = {
-  id?: string;
+  _id?: string;
   name: string;
   email: string;
   phone: number;

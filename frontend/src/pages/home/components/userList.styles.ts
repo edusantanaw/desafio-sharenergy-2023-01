@@ -9,13 +9,12 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  width: 48%;
-  padding: 1em;
+  width: 47%;
+  padding: 1.5em;
   border-radius: 15px;
   display: flex;
   gap: 1.3em;
-  background-color: #fff;
-  border: 1px solid #8f8f8f;
+  border: 1px solid #8d99ae;
   overflow: hidden;
   img {
     width: 7em;
@@ -23,25 +22,26 @@ export const Item = styled.li`
     border-radius: 50%;
     object-fit: cover;
   }
-  span{
-    margin-left: 0.2em;
-  }
-  .infos {
+  .photo{
     display: flex;
     flex-direction: column;
-  }
-  .nickname{
-    gap: 1em;
     align-items: center;
-    span{
-      display: flex;
-      gap:0.4em;
-      p{
-        font-weight: 500;
-      }
-    }
-    #age{
+    gap: 0.7em;
+    font-weight: 300;
+  }
+
+  .infos {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 0.9em;
+    h2{
+      font-size: 1.7em;
       font-weight: 500;
     }
-}
+    span{
+      font-weight: 300;
+    }
+  }
 `;

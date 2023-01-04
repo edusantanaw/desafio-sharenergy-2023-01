@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Modal = styled.div`
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -13,7 +13,7 @@ export const Modal = styled.div`
   .close {
     width: 100%;
     height: 100vh;
-    background-color: #0a0909;
+    background-color: #000000f0;
     position: absolute;
   }
   .error{

@@ -2,22 +2,20 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.section`
   width: 100%;
-  padding: 2em 4em;
+  padding: 7em 4em;
   display: flex;
   justify-content: center;
+  color: #fff;
   .content {
-    background-color: #fff;
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    padding: 2em;
-    box-shadow: 0px 0px 10px #afafaf;
   }
 
   .current_page {
-    margin-top: 1em;
+    margin-top: 3em;
     display: flex;
     width: 100%;
     justify-content: center;
@@ -37,14 +35,17 @@ export const HomeContainer = styled.section`
       font-size: 2em;
       cursor: pointer;
     }
+
+    #actual{
+      background-color: #EF233C;
+    }
   }
 `;
 
 export const Title = styled.h1`
-  font-size: 5em;
+  font-size: 3.5em;
   font-weight: 500;
-  letter-spacing: 3px;
-  font-family: monospace;
+  letter-spacing: 2px;
   padding-bottom: 0.5em;
 `;
 

@@ -5,7 +5,10 @@ import { Item } from "./userList.styles";
 export const UserItem = ({ user }: { user: users }) => {
   return (
     <Item>
-      <img src={user.picture.medium} alt="user image" />
+      <div className="photo">
+        <img src={user.picture.large} alt="user image" />
+        <span>{user.login.username}</span>
+      </div>
       <div className="infos">
         <div>
           <h2>
@@ -14,8 +17,7 @@ export const UserItem = ({ user }: { user: users }) => {
         </div>
         <span>{user.email}</span>
         <div className="nickname">
-          <span><p>user: </p>{user.login.username}</span>
-          <span><p>idade:</p> {user.registered.age} anos</span>
+          <span>{user.registered.age} anos</span>
         </div>
       </div>
     </Item>
