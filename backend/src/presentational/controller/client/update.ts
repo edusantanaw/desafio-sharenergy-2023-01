@@ -15,9 +15,9 @@ export class UdateClientController {
     private readonly updateClientUsecase: updateClientUsecase
   ) {}
 
-  async handle({ data, id }: { data: client; id: string }) {
+  async handle(data: client) {
     try {
-      const { address, cpf, email, name, phone } = data;
+      const { address, cpf, email, name, phone, id } = data;
       if (!id) return badRequest(new InvalidParamError("id"));
       if (!name) return badRequest(new InvalidParamError("nome"));
 
@@ -28,7 +28,6 @@ export class UdateClientController {
 
       if (!this.cpfValidator.isValid(cpf))
         return badRequest(new InvalidParamError("cpf"));
-
       if (!address) return badRequest(new InvalidParamError("endereço"));
       const updatedClient = await this.updateClientUsecase.update({
         data: data,

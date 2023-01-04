@@ -20,7 +20,8 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Label = styled.label<{ size?: string }>`
-  font-size: ${(props) => (props.size ? props.size : "1.2em")};
+  font-size: ${(props) => (props.size ? props.size : "1.15em")};
+  font-weight: 500;
 `;
 
 export const Input = styled.input<{ width?: string; height?: string }>`
@@ -28,9 +29,8 @@ export const Input = styled.input<{ width?: string; height?: string }>`
   height: ${(props) => (props.height ? props.height : "3.3em")};
   padding: 0.5em;
   border: none;
-  background-color: #dfdfdf;
-  border-radius: 7px;
-
+  background-color: #dadada;
+  border-radius: 4px;
   &:focus{
     outline: none;
   }

@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth/authContext";
-import { Label } from "../../styles/Global";
-import { Input } from "../home/components/search.style";
+import { Label , Input} from "../../styles/Global";
 import { Form, LoginContainer } from "./login.styles";
 
 const Login = () => {
@@ -62,8 +61,8 @@ const Login = () => {
           <Input
             type="text"
             id="username"
-            placeholder="example: edusantanaw"
             width="100%"
+            placeholder="example: edusantanaw"
             ref={usernameRef}
           />
         </div>
@@ -73,8 +72,8 @@ const Login = () => {
             type="password"
             id="password"
             placeholder="**********"
-            ref={passwordRef}
             width="100%"
+            ref={passwordRef}
           />
         </div>
         <div className="remember">
@@ -82,7 +81,7 @@ const Login = () => {
           <Label id="remember"  htmlFor="remember"  size="1em">Remember me</Label>
         </div>
         {error && <span id="error">{error}</span>}
-        <Input width="100%" type="submit" />
+        <Input  type="submit"  width="100%" />
       </Form>
     </LoginContainer>
   );

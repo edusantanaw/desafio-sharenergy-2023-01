@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth/authContext";
 import { HeaderContainer } from "./header.styles";
 
 const Header = () => {
+
+  const {signout} = useAuth()
+
   return (
     <HeaderContainer>
       <h1>Logo</h1>
@@ -15,6 +19,7 @@ const Header = () => {
         <li>
           <Link to="/crud">Pagina 3</Link>
         </li>
+        <li><span onClick={signout}>Sair</span></li>
       </ul>
     </HeaderContainer>
   );

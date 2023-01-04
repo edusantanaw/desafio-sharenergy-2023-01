@@ -15,7 +15,7 @@ export default (router: Router) => {
     adapt(makeCreateCLientController())
   );
   router.put(
-    "/client",
+    "/client/:id",
     verifyTokenMiddleware,
     adapt(makeUpdateCLientController())
   );

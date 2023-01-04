@@ -19,6 +19,15 @@ export const CrudContainer =styled.section`
             font-weight:500;
         }
     }
+    .close {
+    width: 100%;
+    height: 100vh;
+    background-color: #000000a0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+  }
 `
 
 export const Button = styled.button`

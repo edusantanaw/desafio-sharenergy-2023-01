@@ -27,14 +27,29 @@ export class ClientRepository implements clientRepository {
   }
 
   async loadAll() {
-    const clientReponse = (await client.find({ deletedAt: {deleted: false} })) as client[];
+    const clientReponse = (await client.find({
+      deletedAt: { deleted: false },
+    })) as client[];
     return clientReponse;
   }
 
-  async update(data: dataUpdate) {
-    const updatedClient = await client.create(data);
-    await updatedClient.save();
-    return updatedClient as client;
+  async update({ data, id }: dataUpdate) {
+    const updateClient = await client.findByIdAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          address: data.address,
+          name: data.name,
+          cpf: data.cpf,
+          email: data.email,
+          phone: data.phone,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+    return updateClient as client;
   }
   async delete(id: string) {
     await client.findByIdAndUpdate(

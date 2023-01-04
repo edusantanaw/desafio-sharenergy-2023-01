@@ -5,15 +5,6 @@ export const ClientContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .columns{
-    width: 85%;
-    display: flex;
-    font-size: 1.3em;
-    font-weight: 300;
-    color: #D80032;
-    justify-content: space-around;
-    padding: 1em 0.5em 1em 3.5em;
-  }
   #eye{
     display: flex;
     align-items: center;
@@ -40,13 +31,14 @@ export const ClientList = styled.ul`
   li {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     border: 1px solid #8D99AE;
     width: 85%;
-    padding: 1.5em 1em;
+    padding: 1.5em 3em;
     font-size: 1em;
     color: #fff;
     font-weight: 300;
-    gap: 0.6em;
+    gap: 1em;
   }
 
   span{

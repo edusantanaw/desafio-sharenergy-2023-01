@@ -14,11 +14,12 @@ export const HeaderContainer = styled.header`
     gap: 1.5em;
     align-items: center;
 
-    a{
+    a, span{
       font-size: 1.2em;
       color: #fff;
       font-weight: 300;
       transition: 0.3s;
+      cursor: pointer;
       &:hover{
         color: #EF233C;
       }

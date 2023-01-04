@@ -2,33 +2,25 @@ import { Input, Label, Form } from "./ModalClient";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { clientForm } from "../../../util/schemas/client";
-import { createClient } from "../../../services/client.service";
 import { client } from "../../../types/client";
-
-type data = {
-  id?: string;
-  name: string;
-  email: string;
-  phone: number;
-  number: number;
-  street: string;
-  city: string;
-  cpf: string;
-};
+import { useState } from "react";
 
 interface props {
   client?: client | null;
+  fn: (data: FieldValues) => Promise<{ success: boolean; data: string }>;
+  modal: () => void;
 }
 
-const FormClient = ({ client }: props) => {
-  async function handleCreate(data: FieldValues) {
-    const { city, street, number, ...rest } = data as data;
-    const address = {
-      city,
-      street,
-      number,
-    };
-    const response = await createClient({ ...rest, address: address });
+const FormClient = ({ client, fn, modal }: props) => {
+  const [errorHandle, setErrorHandle] = useState<string | null>(null);
+
+  async function handle(data: FieldValues) {
+    const response = await fn(data);
+    if (!response.success) {
+      setErrorHandle(response.data);
+      return;
+    }
+    modal();
   }
 
   const {
@@ -38,8 +30,8 @@ const FormClient = ({ client }: props) => {
   } = useForm({ resolver: yupResolver(clientForm) });
   return (
     <Form
-      onSubmit={handleSubmit(handleCreate)}
-      onKeyPress={(e) => e.key === "Enter" && handleSubmit(handleCreate)}
+      onSubmit={handleSubmit(handle)}
+      onKeyPress={(e) => e.key === "Enter" && handleSubmit(handle)}
     >
       <div className="column">
         <Label>Nome</Label>
@@ -117,6 +109,7 @@ const FormClient = ({ client }: props) => {
           </p>
         </div>
       </div>
+      <p className="error">{errorHandle && <>{errorHandle} </>}</p>
       <input type="submit" />
     </Form>
   );

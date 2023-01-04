@@ -10,12 +10,6 @@ interface props {
 const Clients = ({ handleClient, data }: props) => {
   return (
     <ClientContainer>
-      <ul className="columns">
-        <li>Nome</li>
-        <li>Telefone</li>
-        <li>Cidade</li>
-        <li>Opções</li>
-      </ul>
       <ClientList>
         {data ? (
           data.map((client, i) => (

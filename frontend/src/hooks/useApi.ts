@@ -4,18 +4,21 @@ interface props<T> {
   fetching: (data: unknown) => Promise<T[] | null>;
   key: string;
   params?: unknown;
-  dependeces?: unknown;
+  dependeces: unknown[];
 }
 
 export function useApi<T>({
   key,
   fetching,
   params,
-  dependeces = null,
+  dependeces,
 }: props<T>) {
   const { data, isLoading, isError } = useQuery(
-    [key, dependeces],
-    async () => await fetching(params)
+    [key,  ...dependeces],
+    async () => await fetching(params), 
+    {
+      keepPreviousData: true,
+    }
   );
 
   return { data, isLoading, isError };
