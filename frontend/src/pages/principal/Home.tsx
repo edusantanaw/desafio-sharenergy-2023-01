@@ -11,8 +11,8 @@ import { Loading } from "../../components/Loading";
 const Home = () => {
   const { atualPage, isLoading, data, next, prev, setPageByIndex } =
     usePaginate(loadUser, "users");
-  const [searchResults, setSearchResults] = useState<users[] | null>(null);
 
+  const [searchResults, setSearchResults] = useState<users[] | null>(null);
 
   async function handleSearch(target: string, types: string[]) {
       const data = await searchUser(target.toLowerCase(), types);
@@ -33,6 +33,7 @@ const Home = () => {
               .fill("")
               .map((n, i) => (
                 <span
+                key={i}
                   id={atualPage === i + 1  ? "actual" : ""}
                   onClick={() => setPageByIndex(i + 1)}
                 >

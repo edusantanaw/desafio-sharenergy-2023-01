@@ -1,32 +1,28 @@
+import { filterData, filters, fiterParams, getData } from "../types/filterData";
 import { users } from "../types/randomUser";
 
-export async function filterData(
-  data: users[],
-  target: string,
-  types: string[]
-) {
-  const filteredData = await getData(types, data, target);
-  return filteredData;
-}
-
-async function getData(types: string[], data: users[], target: string) {
+export async function filterData({
+  data,
+  target,
+  types,
+}: filterData): Promise<users[]> {
   const currentFilters: users[] = [];
+
   for (let index in types) {
     const typeFilter = typeFilters[types[index]];
-    const filteredData = filter(
-      typeFilter,
-      data,
+
+    const filteredData = filter({
+      method: typeFilter,
+      users: data,
       target,
-      currentFilters
-    );
+      current: currentFilters,
+    });
+
     currentFilters.push(...filteredData);
   }
+
   return currentFilters;
 }
-
-type filters = {
-  [index: string]: (user: users) => string;
-};
 
 const typeFilters: filters = {
   name: (user: users) => user.name.first.toLowerCase(),
@@ -34,16 +30,9 @@ const typeFilters: filters = {
   username: (user: users) => user.login.username.toLowerCase(),
 };
 
-const filter = (
-  method: (user: users) => string,
-  users: users[],
-  target: string,
-  current: users[]
-) => {
+function filter({ current, method, target, users }: fiterParams) {
   const dataFiltered = users.filter(
-    (user) =>
-      method(user).startsWith(target) &&
-      !current.includes(user)
+    (user) => method(user).startsWith(target) && !current.includes(user)
   );
   return dataFiltered;
-};
+}

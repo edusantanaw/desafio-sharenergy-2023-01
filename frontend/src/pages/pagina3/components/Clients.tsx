@@ -14,7 +14,6 @@ const Clients = ({ handleClient, data }: props) => {
         {data ? (
           data.map((client, i) => (
             <li
-              
               className="clients"
               key={i}
             >

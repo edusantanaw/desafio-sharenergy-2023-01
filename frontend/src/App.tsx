@@ -1,6 +1,5 @@
 import { useAuth } from "./context/auth/authContext";
 import Login from "./pages/auth/Login";
-import Home from "./pages/home/Home";
 import { GlobalStyle } from "./styles/Global";
 import {
   BrowserRouter as Router,
@@ -10,17 +9,19 @@ import {
 } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { QueryClient } from "@tanstack/query-core";
-import Cat from "./pages/cats/Cat";
 import Header from "./layout/Header";
-import Crud from "./pages/crud/Crud";
 import { Loading } from "./components/Loading";
+import Home from "./pages/principal/Home";
+import Cat from "./pages/pagina2/Cat";
+import Crud from "./pages/pagina3/Crud";
 
 function App() {
   const queryClient = new QueryClient();
 
   const { isLogged, isLoading } = useAuth();
+
   if (isLoading) return <Loading />
-console.log(isLogged)
+  
   return (
     <QueryClientProvider client={queryClient}>
       <Router>

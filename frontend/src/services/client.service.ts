@@ -1,10 +1,11 @@
 import { client, data } from "../types/client";
+import { httpReponse } from "../types/httpReponse";
 import Api from "../util/Api";
 import { tokenKey } from "../util/keys";
 
 const baseUrl = "http://localhost:5000/api/";
 
-function getToken() {
+function getToken(): string | null {
   const token = localStorage.getItem(tokenKey);
   return token;
 }
@@ -18,15 +19,15 @@ function makeHeaders() {
   };
 }
 
-export async function loadAllClient() {
+export async function loadAllClient(): Promise<client[] | null> {
   const options = makeHeaders();
   const response = await Api.get(baseUrl + "clients", options);
-  console.log(response);
   if (response.data) return response.data as client[];
   return null;
 }
 
-export async function createClient(data: data) {
+
+export async function createClient(data: data): Promise<httpReponse> {
   try {
     const options = makeHeaders();
     await Api.post(baseUrl + "client", data, options);
@@ -37,26 +38,24 @@ export async function createClient(data: data) {
   }
 }
 
-export async function updateClient({ data, id }: { data: data; id: string }) {
+type updateData = { id: string; data: data };
+
+export async function updateClient({
+  data,
+  id,
+}: updateData): Promise<httpReponse> {
   try {
     const options = makeHeaders();
     await Api.put(baseUrl + `client/${id}`, data, options);
     return { success: true, data: "" };
   } catch (error) {
-    console.log(error)
     const data = error as { response: { data: string } };
     return { success: false, data: data.response.data };
   }
 }
 
-export async function deleteClient(id: string) {
+export async function deleteClient(id: string): Promise<string> {
   const options = makeHeaders();
   const response = await Api.delete(`${baseUrl}client/${id}`, options);
-  return response.data;
-}
-
-export async function loadById(id: string) {
-  const options = makeHeaders();
-  const response = await Api.get(`${baseUrl}/client/${id}`, options);
   return response.data;
 }

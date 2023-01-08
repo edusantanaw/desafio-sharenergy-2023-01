@@ -5,12 +5,12 @@ import { deleteClient, loadAllClient } from "../../services/client.service";
 import { client } from "../../types/client";
 import Clients from "./components/Clients";
 import Details from "./components/Details";
-import { NewUserModal } from "./components/NewUserModal";
+import { NewClientModal } from "./components/NewClientModal";
 import Update from "./components/UpdateClient";
 import { Button, CrudContainer } from "./crud.styles";
 
 const Crud = () => {
-  const [newUser, setNewUse] = useState(false);
+  const [newClient, setNewClient] = useState(false);
   const [updateClient, setUpdateClient] = useState(false);
   const [currentClient, setCurrentClient] = useState<client | null>(null);
   const [showInfos, setShowInfos] = useState(false);
@@ -18,11 +18,11 @@ const Crud = () => {
   const { data, isError, isLoading } = useApi({
     key: "clients",
     fetching: loadAllClient,
-    dependeces: [showInfos, newUser],
+    dependeces: [showInfos, newClient, updateClient],
   });
 
-  function handleNewUser() {
-    newUser ? setNewUse(false) : setNewUse(true);
+  function handleNewClient() {
+    newClient ? setNewClient(false) : setNewClient(true);
   }
 
   function showInfo() {
@@ -48,7 +48,7 @@ const Crud = () => {
 
   return (
     <CrudContainer>
-      {newUser && <NewUserModal handleModal={handleNewUser} />}
+      {newClient && <NewClientModal handleModal={handleNewClient} />}
       {updateClient && currentClient && (
         <Update
           currentClient={currentClient}
@@ -57,7 +57,7 @@ const Crud = () => {
       )}
       <div className="header">
         <h2>Listagem de clientes</h2>
-        <Button onClick={handleNewUser}>novo usuario</Button>
+        <Button onClick={handleNewClient}>Novo cliente</Button>
       </div>
       <div className="content">
         <Clients

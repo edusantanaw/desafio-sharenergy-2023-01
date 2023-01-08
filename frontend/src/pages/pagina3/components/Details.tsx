@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { deleteClient } from "../../../services/client.service";
 import { client } from "../../../types/client";
 import { DetailsContainer } from "./styles/details.styles";
 import { AiOutlineClose } from "react-icons/ai";

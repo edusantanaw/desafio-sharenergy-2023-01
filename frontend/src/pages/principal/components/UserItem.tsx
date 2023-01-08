@@ -6,7 +6,7 @@ export const UserItem = ({ user }: { user: users }) => {
   return (
     <Item>
       <div className="photo">
-        <img src={user.picture.large} alt="user image" />
+        <img loading="lazy" src={user.picture.large} alt="user image" />
         <span>{user.login.username}</span>
       </div>
       <div className="infos">

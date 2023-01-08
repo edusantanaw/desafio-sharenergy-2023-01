@@ -34,8 +34,8 @@ const Cat = () => {
         </span>
         {visible && (
           <ul className="list">
-            {statusCode.map((statu) => (
-              <li onClick={() => handleStatus(statu)}>status: {statu}</li>
+            {statusCode.map((statusCode) => (
+              <li onClick={() => handleStatus(statusCode)}>status: {statusCode}</li>
             ))}
           </ul>
         )}

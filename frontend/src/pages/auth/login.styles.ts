@@ -27,6 +27,9 @@ export const LoginContainer = styled.section`
     label{
       cursor: pointer;
     }
+    input{
+      cursor: pointer;
+    }
   }
   #error{
     text-align: center;

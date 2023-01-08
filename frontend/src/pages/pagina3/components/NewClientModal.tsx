@@ -9,7 +9,7 @@ interface props {
 }
 
 
-export const NewUserModal = ({ handleModal }: props) => {
+export const NewClientModal = ({ handleModal }: props) => {
   async function handleCreate(data: FieldValues) {
     const { city, street, number, ...rest } = data as fieldValues;
     const address = {

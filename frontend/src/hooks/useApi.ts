@@ -16,9 +16,6 @@ export function useApi<T>({
   const { data, isLoading, isError } = useQuery(
     [key,  ...dependeces],
     async () => await fetching(params), 
-    {
-      keepPreviousData: true,
-    }
   );
 
   return { data, isLoading, isError };

@@ -2,6 +2,7 @@ import { createContext, useContext, useLayoutEffect, useState } from "react";
 import { AuthContextData, data, providerProp } from "../../types/auth";
 import { authService } from "../../services/auth.service";
 import { tokenKey } from "../../util/keys";
+import { httpReponse } from "../../types/httpReponse";
 
 const AuthContext = createContext({} as AuthContextData);
 
@@ -26,11 +27,11 @@ export const AuthProvider = ({ children }: providerProp) => {
     setLoading(false);
   };
 
-  async function auth(data: data) {
+  async function auth(data: data): Promise<httpReponse> {
     const response = await authService(data);
-    setToken(response.data);
     if (response.success) {
       setIsLogged(true);
+      setToken(response.data);
     }
     return response;
   }
